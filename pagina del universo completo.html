@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>El Universo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: "Times New Roman", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-image: url('https://st1.uvnimg.com/dims4/default/f0c46c7/2147483647/thumbnail/400x225/quality/75/format/jpg/?url=http%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2F5d%2F75%2F3bd43dc74de6bc2197fa6f0e7ee0%2Fgiphy-20.gif');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 4em 0;
+            text-align: center;
+            animation: moveBackground 30s linear infinite;
+            position: relative;
+        }
+        header h1 {
+            color: white;
+            display: inline-block;
+            margin-left: 1.50rem;
+            vertical-align: middle;
+            font-style: italic;
+        }
+        .menu-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 1.25rem;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 300%;
+            width: 12.5rem;
+            background-color: #333;
+            z-index: 1000;
+            padding-top: 5.50rem;
+            transition: transform 0.5s ease-in-out;
+            transform: translateX(-12.5rem);
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 4.25rem 0;
+            padding: 0;
+        }
+        p {
+            line-height: 1.5;
+        }
+        nav ul li {
+            position: relative;
+            margin-bottom: 0.625rem;
+        }
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: left;
+            padding: 0.875rem 1rem;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            background-color: #111;
+        }
+        nav ul li ul {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 11.5rem;
+            background-color: #333;
+            min-width: 15rem;
+            z-index: 2;
+        }
+        nav ul li ul li a {
+            padding: 0.75rem 1rem;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        .content-wrapper {
+            max-width: 50rem;
+            margin: 0 auto;
+            background: white;
+            padding: 1.25rem;
+            box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+            border-radius: 0.625rem;
+        }
+        main {
+            display: block;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 9.375rem);
+            margin-top: 2.25rem;
+        }
+        section {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFF;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centra el contenido de la sección */
+        }
+        .text-box {
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+        .welcome-section {
+            background-image: url('https://st1.uvnimg.com/dims4/default/f0c46c7/2147483647/thumbnail/400x225/quality/75/format/jpg/?url=http%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2F5d%2F75%2F3bd43dc74de6bc2197fa6f0e7ee0%2Fgiphy-20.gif');
+            background-size: cover;
+            padding: 3.125rem;
+            text-align: center;
+            color: white;
+        }
+        .iframe-wrapper {
+            width: 100%;
+            margin-top: 2em;
+        }
+        .iframe-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            width: 100%;
+            max-width: 75rem;
+            margin: 0 auto;
+            padding: 1.25rem;
+        }
+        .img-responsive {
+            width: 100%;
+            height: auto;
+        }
+        /* Estilo para la imagen en forma de círculo */
+        .profile-image {
+            width: 200px; /* Ajusta el tamaño de la imagen según sea necesario */
+            height: 200px; /* Asegúrate de que el ancho y alto sean iguales para mantener el círculo */
+            border-radius: 50%; /* Esto crea el recorte en forma de círculo */
+            object-fit: cover; /* Asegura que la imagen cubra el círculo sin distorsión */
+            margin: 0 1em 1em 0; /* Espacio entre imágenes */
+            display: inline-block; /* Asegura que las imágenes se alineen en línea */
+        }
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                max-width: 45rem;
+            }
+        }
+        @media (max-width: 992px) {
+            .content-wrapper {
+                max-width: 40rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 35rem;
+                padding: 1rem;
+            }
+            header {
+                padding: 3em 0;
+            }
+            .menu-icon {
+                font-size: 1.25rem;
+            }
+            nav {
+                width: 10rem;
+                transform: translateX(-10rem);
+            }
+            nav ul li a {
+                padding: 0.75rem 0.875rem;
+            }
+            nav ul li ul {
+                left: 10rem;
+            }
+            .iframe-container {
+                padding-bottom: 75%;
+            }
+        }
+        @media (max-width: 576px) {
+            .content-wrapper {
+                max-width: 100%;
+                padding: 0.75rem;
+            }
+            header {
+                padding: 2em 0;
+            }
+            .menu-icon {
+                font-size: 3rem;
+            }
+            nav {
+                width: 8rem;
+                transform: translateX(-8rem);
+            }
+            nav ul li a {
+                padding: 0.625rem 0.75rem;
+            }
+            nav ul li ul {
+                left: 8rem;
+            }
+            .iframe-container {
+                padding-bottom: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a Nuestro Espacio de Información Educativa</h1>
+        <div class="menu-icon" onclick="toggleNav()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    <nav id="sideNav">
+        <ul>
+            <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#sobre"><i class="fas fa-info-circle"></i> Sobre Nosotros</a></li>
+            <li><a href="#servicios"><i class="fas fa-concierge-bell"></i> Servicios</a></li>
+            <li><a href="file:///C:/Users/Grecia%20Noriega/Downloads/juegos%20del%20universo.html"><i class="fas fa-gamepad"></i> Juegos Disponibles</a></li>
+            <li><a href="file:///C:/Users/Grecia%20Noriega/Downloads/x.html#"><i class="fas fa-compass"></i> Guía </a></li>
+        </ul>
+        <button onclick="toggleNav()" class="close-nav">Cerrar</button>
+    </nav>
+    <main>
+        <div class="content-wrapper">
+            <section id="inicio">
+                <h2>Inicio</h2>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh9IAZo-RltyRgMYFBXtyiQ4mRzflygYW0_Q&s" alt="Imagen de perfil" class="profile-image">
+                <img src="https://ciencia.unam.mx/uploads/textos/ar_dossier_sistema_solar_27082021.jpg" alt="Imagen de perfil" class="profile-image">
+                <p>Bienvenidos a mi página web dedicada a la fascinante exploración del universo. Aquí encontrarás información sobre los misterios del cosmos, desde los planetas de nuestro sistema solar hasta las galaxias más lejanas.</p>
+                <p>El universo es un vasto e intrigante espacio que ha cautivado a la humanidad durante siglos. Con sus miles de millones de estrellas, planetas y otros cuerpos celestes, nos ofrece un sinfín de maravillas por descubrir y comprender.</p>
+                <p>En esta página, compartiremos conocimientos sobre la formación de estrellas y planetas, la naturaleza de los agujeros negros, las teorías sobre el origen del universo, y los últimos descubrimientos en astronomía. Además, exploraremos cómo la ciencia y la tecnología están ampliando continuamente nuestros horizontes y cambiando nuestra comprensión del cosmos.</p>
+                <p>Espero que disfrutes explorando estos temas tanto como yo disfruto compartiéndolos. ¡Prepárate para un viaje emocionante a través del universo!</p>
+            </section>
+            <section id="sobre">
+                <h2>Sobre Nosotros</h2>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlteNkQVWBwC04YhlIkNBMEO73tCYF5MJdXw&s" alt="Imagen de perfil" class="profile-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpHEIuBd2e9dyCWZz6XtNNL8LMU2-6n5iQJA&s" alt="Imagen de perfil" class="profile-image">
+                <p>Soy una estudiante apasionada por el aprendizaje y el crecimiento personal. Me dedico a expandir mis conocimientos en crear páginas educativas para los niños, y estoy entusiasta por las oportunidades de desarrollo que encuentro en este campo.</p>
+                <p>Además de mis estudios, participo en proyectos de investigación. Estas experiencias me han permitido desarrollar habilidades de trabajo en equipo, liderazgo y comunicación.</p>
+                <p>Estoy siempre dispuesta a aprender y a enfrentar nuevos desafíos, y espero contribuir positivamente a cualquier proyecto en el que participe. Gracias por visitar mi página web.</p>
+            </section>
+            <section id="servicios">
+                <h2>Servicios</h2>
+                <img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHea1TXA6OJ3XIxgun1GtOb2nEftCX5l9JRw&s"  alt="Imagen de perfil" class="profile-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTIobFTDtgfpw4CAiO-EQQuym_rzJtmn5b0Q&s" alt="Imagen de perfil" class="profile-image">
+                <p>En esta sección, ofrecemos una variedad de servicios educativos y de divulgación científica centrados en la fascinante exploración del universo. Nuestros servicios están diseñados para estudiantes, entusiastas de la astronomía y cualquier persona interesada en aprender más sobre el cosmos.</p>
+                <ul>
+                    <li><strong>Talleres:</strong> Organizamos talleres interactivos y conferencias sobre diversos temas astronómicos, como la formación de estrellas, los planetas del sistema solar, y los misterios de los agujeros negros.</li>
+                    <li><strong>Recursos Educativos:</strong> Proporcionamos una variedad de recursos educativos, como guías de estudio, artículos informativos y material multimedia, para ayudar a los estudiantes a comprender mejor los conceptos astronómicos.</li>
+                    <li><strong>Visitas Guiadas a Planetarios:</strong> Coordinamos visitas guiadas a planetarios y centros de ciencia, ofreciendo a los participantes una experiencia inmersiva en la exploración del universo.</li>
+                </ul>
+                <p>Nos apasiona compartir el conocimiento sobre el universo y fomentar el interés por la astronomía. Si estás interesado en alguno de nuestros servicios o tienes alguna pregunta, no dudes en ponerte en contacto con nosotros.</p>
+            </section>
+        </div>
+    </main>
+    <script>
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            if (nav.style.transform === 'translateX(0px)') {
+                nav.style.transform = 'translateX(-12.5rem)';
+            } else {
+                nav.style.transform = 'translateX(0px)';
+            }
+        }
+    </script>
+</body>
+</html>
+
